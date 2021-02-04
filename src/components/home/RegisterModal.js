@@ -1,9 +1,23 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import Modal from 'react-bootstrap/Modal'
+import { useSelector, useDispatch } from 'react-redux'
+import { createUser } from '../../actions/results'
 
 const RegisterModal = ({ show, closeModal }) => {
+  const [email, setEmail] = useState('')
+  const [control, setControl] = useState(true)
+  const [password, setPassword] = useState('')
+  const dispatch = useDispatch()
+
+  const handleCreateUser = (email, password) => {
+    console.log('hola')
+    try {
+      dispatch(createUser(email, password))
+    } catch (err) {}
+  }
+
   return (
     <Modal
       show={show}
@@ -21,12 +35,24 @@ const RegisterModal = ({ show, closeModal }) => {
           <Form.Row>
             <Form.Group controlId='formGridEmail'>
               <Form.Label>Email</Form.Label>
-              <Form.Control type='email' placeholder='Enter email' />
+              <Form.Control
+                type='email'
+                placeholder='Enter email'
+                value={email}
+                onChange={(e) => {
+                  setEmail(e.target.value)
+                }}
+              />
             </Form.Group>
 
             <Form.Group controlId='formGridPassword'>
               <Form.Label>Password</Form.Label>
-              <Form.Control type='password' placeholder='Password' />
+              <Form.Control
+                type='password'
+                placeholder='Password'
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
             </Form.Group>
           </Form.Row>
 
@@ -74,6 +100,7 @@ const RegisterModal = ({ show, closeModal }) => {
               margin: '2px',
               marginLeft: '180px',
             }}
+            onClick={() => handleCreateUser(email, password)}
           >
             Registrarme
           </Button>
