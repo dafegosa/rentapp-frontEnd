@@ -14,7 +14,7 @@ const LargeCard = () => {
     <div className='card-group' style={{ margin: '2% 15%' }}>
       {show ? <HomeModal show={show} closeModal={closeModal} /> : null}
       <div
-        className='card text-center'
+        className='card border-info text-center'
         style={{ margin: '1%', height: 'auto' }}
       >
         <div className='card-body'>
@@ -38,7 +38,7 @@ const LargeCard = () => {
         </div>
       </div>
       <div
-        className='card text-center'
+        className='card border-info text-center'
         style={{ margin: '1%', height: 'auto' }}
       >
         <div className='card-body'>
@@ -61,7 +61,7 @@ const LargeCard = () => {
         </div>
       </div>
       <div
-        className='card text-center'
+        className='card border-info text-center'
         style={{ margin: '1%', height: 'auto' }}
       >
         <div className='card-body'>
