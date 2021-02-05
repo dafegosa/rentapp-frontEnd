@@ -3,18 +3,65 @@ import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
+import { useDispatch, useSelector } from 'react-redux'
+import { createElement } from '../actions/results'
 
 const FormCreateElement = () => {
+  const dispatch = useDispatch()
   const [category, setCategory] = useState('')
+  const [nameElement, setNameElement] = useState('')
+  const [modelElement, setModelElement] = useState('')
+  const [priceElement, setPriceElement] = useState('')
+  const [descriptionElement, setDescriptionElement] = useState('')
+  const [subCategoryElement, setSubCategoryElement] = useState('')
+  const userId = useSelector((state) => state.user.id)
+  const events = ['Seleccionar', 'Menaje', 'Decoración', 'Sonido', 'Logística']
+  const both = ['Seleccionar', 'Arte y decoración', 'Sonido', 'Logística']
+
+  console.log('El user id ', userId)
   const audiovsual = [
+    'Seleccionar',
     'Arte',
     'Fotografía e iluminación',
     'Sonido',
     'Post-producción',
     'Logística',
   ]
-  const events = ['Menaje', 'Decoración', 'Sonido', 'Logística']
-  const both = ['Arte y decoración', 'Sonido', 'Logística']
+  const validate = (e) => {
+    e.preventDefault()
+    handleCreateElement(
+      nameElement,
+      modelElement,
+      priceElement,
+      descriptionElement,
+      category,
+      subCategoryElement,
+      userId
+    )
+  }
+  const handleCreateElement = (
+    nameElement,
+    modelElement,
+    priceElement,
+    descriptionElement,
+    category,
+    subCategoryElement,
+    userId
+  ) => {
+    try {
+      dispatch(
+        createElement(
+          nameElement,
+          modelElement,
+          priceElement,
+          descriptionElement,
+          category,
+          subCategoryElement,
+          userId
+        )
+      )
+    } catch (err) {}
+  }
   return (
     <div
       className='card border-info mb-3 mx-auto'
@@ -26,13 +73,19 @@ const FormCreateElement = () => {
         padding: '1%',
       }}
     >
-      <Form>
+      <Form onSubmit={validate}>
         <Form.Group as={Row} controlId='formHorizontalName'>
           <Form.Label column sm={3}>
             Nombre del elemento:
           </Form.Label>
           <Col sm={9}>
-            <Form.Control type='text' placeholder='Nombre' />
+            <Form.Control
+              value={nameElement}
+              type='text'
+              placeholder='Nombre'
+              required
+              onChange={(e) => setNameElement(e.target.value)}
+            />
           </Col>
         </Form.Group>
         <Form.Group as={Row} controlId='formHorizontalModel'>
@@ -40,7 +93,13 @@ const FormCreateElement = () => {
             Modelo:
           </Form.Label>
           <Col sm={9}>
-            <Form.Control type='text' placeholder='Modelo' />
+            <Form.Control
+              type='text'
+              placeholder='Modelo'
+              required
+              value={modelElement}
+              onChange={(e) => setModelElement(e.target.value)}
+            />
           </Col>
         </Form.Group>
         <Form.Group as={Row} controlId='formHorizontalPrice'>
@@ -48,7 +107,13 @@ const FormCreateElement = () => {
             Costo día de alquiler
           </Form.Label>
           <Col sm={9}>
-            <Form.Control type='text' placeholder='Precio día' />
+            <Form.Control
+              type='text'
+              placeholder='Precio día'
+              required
+              value={priceElement}
+              onChange={(e) => setPriceElement(e.target.value)}
+            />
           </Col>
         </Form.Group>
         <Form.Group as={Row} controlId='formHorizontalDescription'>
@@ -56,7 +121,14 @@ const FormCreateElement = () => {
             Descripción, características y recomendaciones:
           </Form.Label>
           <Col sm={9}>
-            <Form.Control as='textarea' rows={3} placeholder='...' />
+            <Form.Control
+              as='textarea'
+              rows={3}
+              placeholder='...'
+              required
+              value={descriptionElement}
+              onChange={(e) => setDescriptionElement(e.target.value)}
+            />
           </Col>
         </Form.Group>
         <Form.Label column sm={12}>
@@ -83,6 +155,7 @@ const FormCreateElement = () => {
                 onClick={(e) => {
                   setCategory(e.target.id)
                 }}
+                required
               />
               <Form.Check
                 type='radio'
@@ -107,13 +180,14 @@ const FormCreateElement = () => {
         </fieldset>
         <Form.Group as={Row} controlId='formGridState'>
           <Form.Label column sm={3}>
-            State
+            Sub categoría
           </Form.Label>
           <Col sm={9}>
             <Form.Control
               as='select'
               defaultValue='Choose...'
               style={{ maxWidth: '16.5rem', margin: '0 2%' }}
+              onChange={(e) => setSubCategoryElement(e.target.value)}
             >
               {category === 'Audiovisual' ? (
                 audiovsual.map((el) => {

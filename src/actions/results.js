@@ -45,3 +45,37 @@ export const loginUser = (email, password, history, login) => {
     } catch (err) {}
   }
 }
+
+export const createElement = (
+  name,
+  model,
+  price,
+  description,
+  category,
+  subCategory,
+  userId
+) => {
+  return async (dispatch) => {
+    try {
+      const { data } = await axios({
+        method: 'POST',
+        baseURL: process.env.REACT_APP_SERVER_URL,
+        url: 'element/new',
+        data: {
+          name,
+          model,
+          price,
+          description,
+          category,
+          subCategory,
+          rented: false,
+          available: true,
+          owner: userId,
+          iHaveIt: 'nn',
+        },
+      })
+      console.log('DataElement => ', data.element)
+      // dispatch(setUser(data.user))
+    } catch (err) {}
+  }
+}

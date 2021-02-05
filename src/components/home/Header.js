@@ -7,12 +7,21 @@ import { withRouter } from 'react-router-dom'
 
 const Header = ({ login, history }) => {
   const token = localStorage.getItem('token')
+  const closeSession = () => {
+    localStorage.removeItem('token')
+    history.push('/home')
+  }
   return (
     <Navbar
       collapseOnSelect
       expand='lg'
       class='navbar navbar-expand-lg navbar-light'
-      style={{ background: '#74e893', color: 'black', padding: '1%' }}
+      style={{
+        background: '#74e893',
+        color: 'black',
+        padding: '1%',
+      }}
+      sticky='top'
     >
       <Navbar.Brand href='#home' onClick={() => history.push('/home')}>
         RentApp
@@ -21,7 +30,7 @@ const Header = ({ login, history }) => {
         href='#pricing'
         style={{ color: 'black', width: '150px' }}
         onClick={() => {
-          token ? localStorage.removeItem('token') : login()
+          token ? closeSession() : login()
         }}
       >
         {token ? 'Cerrar Sesión' : 'Iniciar Sesión'}
