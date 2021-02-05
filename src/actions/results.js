@@ -4,9 +4,8 @@ export const setUser = (user) => ({
   type: SET_USER,
   user,
 })
-export const createUser = (email, password) => {
+export const createUser = (email, password, history, closeModal, login) => {
   return async (dispatch) => {
-    console.log('BUENASSS')
     try {
       const { data } = await axios({
         method: 'POST',
@@ -18,7 +17,31 @@ export const createUser = (email, password) => {
         },
       })
       localStorage.setItem('token', data.token)
-      dispatch(setUser(data))
+      localStorage.setItem('uName', data.user.email)
+      dispatch(setUser(data.user))
+      closeModal()
+      history.push('/home')
+      login()
+    } catch (err) {}
+  }
+}
+export const loginUser = (email, password, history, login) => {
+  return async (dispatch) => {
+    try {
+      const { data } = await axios({
+        method: 'POST',
+        baseURL: process.env.REACT_APP_SERVER_URL,
+        url: 'user/signin',
+        data: {
+          email,
+          password,
+        },
+      })
+      localStorage.setItem('token', data.token)
+      localStorage.setItem('uName', data.user.email)
+      dispatch(setUser(data.user))
+      history.push('/home')
+      login()
     } catch (err) {}
   }
 }

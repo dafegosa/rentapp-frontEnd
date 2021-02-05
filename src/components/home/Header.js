@@ -3,9 +3,10 @@ import 'bootswatch/dist/materia/bootstrap.min.css'
 import NavDropdown from 'react-bootstrap/NavDropdown'
 import Navbar from 'react-bootstrap/Navbar'
 import Nav from 'react-bootstrap/Nav'
+import { withRouter } from 'react-router-dom'
 
-const Header = ({ login }) => {
-  console.log(login)
+const Header = ({ login, history }) => {
+  const token = localStorage.getItem('token')
   return (
     <Navbar
       collapseOnSelect
@@ -13,13 +14,17 @@ const Header = ({ login }) => {
       class='navbar navbar-expand-lg navbar-light'
       style={{ background: '#74e893', color: 'black', padding: '1%' }}
     >
-      <Navbar.Brand href='#home'>RentApp</Navbar.Brand>
+      <Navbar.Brand href='#home' onClick={() => history.push('/home')}>
+        RentApp
+      </Navbar.Brand>
       <Nav.Link
         href='#pricing'
         style={{ color: 'black', width: '150px' }}
-        onClick={() => login()}
+        onClick={() => {
+          token ? localStorage.removeItem('token') : login()
+        }}
       >
-        Iniciar sesion
+        {token ? 'Cerrar Sesión' : 'Iniciar Sesión'}
       </Nav.Link>
       <Navbar.Toggle aria-controls='responsive-navbar-nav' />
       <Navbar.Collapse id='responsive-navbar-nav'>
@@ -92,4 +97,4 @@ const Header = ({ login }) => {
   )
 }
 
-export default Header
+export default withRouter(Header)

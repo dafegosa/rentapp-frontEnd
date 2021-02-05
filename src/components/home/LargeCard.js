@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import Card from 'react-bootstrap/Card'
 import Button from 'react-bootstrap/Button'
-import HomeModal from './home/HomeModal'
+import HomeModal from './HomeModal'
 
 const LargeCard = () => {
   const [show, setShow] = useState(false)
@@ -11,7 +11,7 @@ const LargeCard = () => {
   }
 
   return (
-    <div className='card-group' style={{ margin: '2% 15%' }}>
+    <div className='card-group' style={{ margin: '1% 15%' }}>
       {show ? <HomeModal show={show} closeModal={closeModal} /> : null}
       <div
         className='card border-info text-center'

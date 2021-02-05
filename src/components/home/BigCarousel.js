@@ -11,7 +11,7 @@ const BigCarousel = () => {
     <Carousel
       activeIndex={index}
       onSelect={handleSelect}
-      style={{ height: '50vh', marginTop: '1px' }}
+      style={{ height: '60vh', marginTop: '1px' }}
       className='content'
     >
       <Carousel.Item>
@@ -19,7 +19,7 @@ const BigCarousel = () => {
           className='d-block mx-auto'
           src='https://res.cloudinary.com/dafegosa/image/upload/v1612382524/banner1_hgaon0.jpg'
           alt='First slide'
-          style={{ height: '50vh' }}
+          style={{ height: '60vh' }}
         />
         <Carousel.Caption>
           <h3>First slide label</h3>
@@ -31,7 +31,7 @@ const BigCarousel = () => {
           className='d-block mx-auto'
           src='https://res.cloudinary.com/dafegosa/image/upload/v1612382531/banner3_lsldkk.jpg'
           alt='Second slide'
-          style={{ height: '50vh' }}
+          style={{ height: '60vh' }}
         />
 
         <Carousel.Caption>
@@ -44,7 +44,7 @@ const BigCarousel = () => {
           className='d-block mx-auto'
           src='https://res.cloudinary.com/dafegosa/image/upload/v1612382531/banner2_e0hs5i.jpg'
           alt='Third slide'
-          style={{ height: '50vh' }}
+          style={{ height: '60vh' }}
         />
 
         <Carousel.Caption>

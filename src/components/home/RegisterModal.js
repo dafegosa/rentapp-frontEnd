@@ -4,17 +4,17 @@ import Button from 'react-bootstrap/Button'
 import Modal from 'react-bootstrap/Modal'
 import { useSelector, useDispatch } from 'react-redux'
 import { createUser } from '../../actions/results'
+import { withRouter } from 'react-router-dom'
 
-const RegisterModal = ({ show, closeModal }) => {
+const RegisterModal = ({ show, closeModal, history, login }) => {
   const [email, setEmail] = useState('')
   const [control, setControl] = useState(true)
   const [password, setPassword] = useState('')
   const dispatch = useDispatch()
 
-  const handleCreateUser = (email, password) => {
-    console.log('hola')
+  const handleCreateUser = (email, password, history, closeModal, login) => {
     try {
-      dispatch(createUser(email, password))
+      dispatch(createUser(email, password, history, closeModal, login))
     } catch (err) {}
   }
 
@@ -100,7 +100,9 @@ const RegisterModal = ({ show, closeModal }) => {
               margin: '2px',
               marginLeft: '180px',
             }}
-            onClick={() => handleCreateUser(email, password)}
+            onClick={() =>
+              handleCreateUser(email, password, history, closeModal, login)
+            }
           >
             Registrarme
           </Button>
@@ -110,4 +112,4 @@ const RegisterModal = ({ show, closeModal }) => {
   )
 }
 
-export default RegisterModal
+export default withRouter(RegisterModal)

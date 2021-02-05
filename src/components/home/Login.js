@@ -2,16 +2,30 @@ import React, { useState } from 'react'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import RegisterModal from './RegisterModal'
+import { useSelector, useDispatch } from 'react-redux'
+import { loginUser } from '../../actions/results'
+import { withRouter } from 'react-router-dom'
 
-const Login = () => {
+const Login = ({ login, history }) => {
   const [show, setShow] = useState(false)
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const dispatch = useDispatch()
 
   const closeModal = () => {
     setShow(false)
   }
+
+  const signin = (email, password, history, login) => {
+    try {
+      dispatch(loginUser(email, password, history, login))
+    } catch (err) {}
+  }
   return (
     <Form>
-      {show ? <RegisterModal show={show} closeModal={closeModal} /> : null}
+      {show ? (
+        <RegisterModal show={show} closeModal={closeModal} login={login} />
+      ) : null}
 
       <button
         type='button'
@@ -31,6 +45,9 @@ const Login = () => {
           height: '30px',
           margin: '2px',
         }}
+        onChange={(e) => {
+          setEmail(e.target.value)
+        }}
       />
       <Form.Text className='text-muted'>
         We'll never share your email with anyone else.
@@ -45,6 +62,7 @@ const Login = () => {
           height: '30px',
           margin: '2px',
         }}
+        onChange={(e) => setPassword(e.target.value)}
       />
       {/* <Form.Check type='checkbox' label='Check me out' /> */}
       <Button
@@ -57,6 +75,7 @@ const Login = () => {
           margin: '2px',
           marginLeft: '230px',
         }}
+        onClick={() => signin(email, password, history, login)}
       >
         Ingresar
       </Button>
@@ -64,4 +83,4 @@ const Login = () => {
   )
 }
 
-export default Login
+export default withRouter(Login)

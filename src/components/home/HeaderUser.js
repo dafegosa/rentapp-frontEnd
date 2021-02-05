@@ -1,11 +1,14 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import 'bootswatch/dist/materia/bootstrap.min.css'
 import NavDropdown from 'react-bootstrap/NavDropdown'
 import Navbar from 'react-bootstrap/Navbar'
 import Nav from 'react-bootstrap/Nav'
+import { useSelector } from 'react-redux'
+import { withRouter } from 'react-router-dom'
 
-const HeaderUser = ({ login }) => {
-  console.log(login)
+const HeaderUser = ({ login, history }) => {
+  // const userEmail = useSelector((state) => state.user.email)
+  const userEmail = localStorage.getItem('uName')
   return (
     <Navbar
       collapseOnSelect
@@ -22,13 +25,16 @@ const HeaderUser = ({ login }) => {
       <Navbar.Toggle aria-controls='responsive-navbar-nav' />
       <Nav.Link href='#features' style={{ color: 'white', paddingLeft: '0' }}>
         <strong>
-          <i class='far fa-user'></i> Usuario
+          <i class='far fa-user'></i> {userEmail || 'Usuario'}
         </strong>
       </Nav.Link>
       <Navbar.Collapse id='responsive-navbar-nav'>
         <Nav>
           <Nav.Link href='#pricing'> He rentado </Nav.Link>
-          <Nav.Link href='#pricing'> Crear nuevo elemento </Nav.Link>
+          <Nav.Link href='#pricing' onClick={() => history.push('/newElement')}>
+            {' '}
+            Crear nuevo elemento{' '}
+          </Nav.Link>
           <Nav.Link href='#pricing'> Mis elementos </Nav.Link>
           <Nav.Link href='#pricing'> Mi billetera </Nav.Link>
         </Nav>
@@ -37,4 +43,4 @@ const HeaderUser = ({ login }) => {
   )
 }
 
-export default HeaderUser
+export default withRouter(HeaderUser)
