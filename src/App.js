@@ -8,7 +8,8 @@ import {
   Switch,
   Redirect,
 } from 'react-router-dom'
-import CreateElement from './components/CreateElement'
+import CreateElement from './components/createElement/CreateElement'
+import MyElements from './components/MyElements/MyElements'
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
       <Switch>
         <Route exact path='/home' component={Home} />
         <Route exact path='/newElement' component={CreateElement} />
+        <Route exact path='/My_elements_list' component={MyElements} />
         {/* <PrivateRoute path='/dashboard' component={Dashboard} /> */}
         <Redirect to='home' />
       </Switch>

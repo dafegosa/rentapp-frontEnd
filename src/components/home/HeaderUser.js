@@ -3,10 +3,18 @@ import 'bootswatch/dist/materia/bootstrap.min.css'
 import NavDropdown from 'react-bootstrap/NavDropdown'
 import Navbar from 'react-bootstrap/Navbar'
 import Nav from 'react-bootstrap/Nav'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { withRouter } from 'react-router-dom'
+import { myElementsList } from '../../actions/results'
 
 const HeaderUser = ({ login, history }) => {
+  const dispatch = useDispatch()
+  const id = useSelector((state) => state.user.id)
+  useEffect(() => {
+    try {
+      dispatch(myElementsList(id))
+    } catch (err) {}
+  }, [])
   // const userEmail = useSelector((state) => state.user.email)
   const userEmail = localStorage.getItem('uName')
   return (
@@ -35,7 +43,13 @@ const HeaderUser = ({ login, history }) => {
             {' '}
             Crear nuevo elemento{' '}
           </Nav.Link>
-          <Nav.Link href='#pricing'> Mis elementos </Nav.Link>
+          <Nav.Link
+            href='#pricing'
+            onClick={() => history.push('/My_elements_list')}
+          >
+            {' '}
+            Mis elementos{' '}
+          </Nav.Link>
           <Nav.Link href='#pricing'> Mi billetera </Nav.Link>
         </Nav>
       </Navbar.Collapse>

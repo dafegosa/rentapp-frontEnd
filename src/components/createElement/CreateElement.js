@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import FormCreateElement from './FormCreateElement'
-import Header from './home/Header'
-import HeaderUser from './home/HeaderUser'
+import Header from '../home/Header'
+import HeaderUser from '../home/HeaderUser'
 
 const CreateElement = () => {
   const [log, setLog] = useState(false)

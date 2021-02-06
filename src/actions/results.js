@@ -1,8 +1,12 @@
 import axios from 'axios'
-import { SET_USER } from '../utils/constants'
+import { SET_USER, SET_MYELEMENTS } from '../utils/constants'
 export const setUser = (user) => ({
   type: SET_USER,
   user,
+})
+export const setMyElements = (elements) => ({
+  type: SET_MYELEMENTS,
+  elements,
 })
 export const createUser = (email, password, history, closeModal, login) => {
   return async (dispatch) => {
@@ -76,6 +80,22 @@ export const createElement = (
       })
       console.log('DataElement => ', data.element)
       // dispatch(setUser(data.user))
+    } catch (err) {}
+  }
+}
+
+export const myElementsList = (id) => {
+  return async (dispatch) => {
+    try {
+      const { data } = await axios({
+        method: 'PUT',
+        baseURL: process.env.REACT_APP_SERVER_URL,
+        url: 'element/myElementsList',
+        data: {
+          id,
+        },
+      })
+      dispatch(setMyElements(data.data))
     } catch (err) {}
   }
 }

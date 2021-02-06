@@ -4,7 +4,7 @@ import Button from 'react-bootstrap/Button'
 import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
 import { useDispatch, useSelector } from 'react-redux'
-import { createElement } from '../actions/results'
+import { createElement } from '../../actions/results'
 
 const FormCreateElement = () => {
   const dispatch = useDispatch()
