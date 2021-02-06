@@ -1,11 +1,15 @@
 import axios from 'axios'
-import { SET_USER, SET_MYELEMENTS } from '../utils/constants'
+import { SET_USER, SET_MYELEMENTS, SET_ELEMENTS } from '../utils/constants'
 export const setUser = (user) => ({
   type: SET_USER,
   user,
 })
 export const setMyElements = (elements) => ({
   type: SET_MYELEMENTS,
+  elements,
+})
+export const setElements = (elements) => ({
+  type: SET_ELEMENTS,
   elements,
 })
 export const createUser = (email, password, history, closeModal, login) => {
@@ -96,6 +100,20 @@ export const myElementsList = (id) => {
         },
       })
       dispatch(setMyElements(data.data))
+    } catch (err) {}
+  }
+}
+
+export const elementsList = (id) => {
+  return async (dispatch) => {
+    try {
+      const { data } = await axios({
+        method: 'GET',
+        baseURL: process.env.REACT_APP_SERVER_URL,
+        url: 'element/all',
+      })
+      dispatch(setElements(data.data))
+      console.log('Todos los elementos => ', data.data)
     } catch (err) {}
   }
 }
