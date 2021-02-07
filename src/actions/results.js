@@ -1,5 +1,10 @@
 import axios from 'axios'
-import { SET_USER, SET_MYELEMENTS, SET_ELEMENTS } from '../utils/constants'
+import {
+  SET_USER,
+  SET_MYELEMENTS,
+  SET_ELEMENTS,
+  SET_SEARCHER,
+} from '../utils/constants'
 export const setUser = (user) => ({
   type: SET_USER,
   user,
@@ -11,6 +16,10 @@ export const setMyElements = (elements) => ({
 export const setElements = (elements) => ({
   type: SET_ELEMENTS,
   elements,
+})
+export const setSearcher = (searcher) => ({
+  type: SET_SEARCHER,
+  searcher,
 })
 export const createUser = (email, password, history, closeModal, login) => {
   return async (dispatch) => {

@@ -22,7 +22,7 @@ const Login = ({ login, history }) => {
     } catch (err) {}
   }
   return (
-    <Form>
+    <Form style={{ background: '#5d635d' }}>
       {show ? (
         <RegisterModal show={show} closeModal={closeModal} login={login} />
       ) : null}
@@ -30,7 +30,7 @@ const Login = ({ login, history }) => {
       <button
         type='button'
         class='btn btn-link '
-        style={{ marginLeft: '80px' }}
+        style={{ marginLeft: '80px', color: '#ebf5eb' }}
         onClick={() => setShow(true)}
       >
         Crear una cuenta
@@ -71,9 +71,10 @@ const Login = ({ login, history }) => {
           background: '#74e893',
           borderRadius: '10px',
           height: '30px',
-          padding: '1px',
+          padding: '4px',
           margin: '2px',
           marginLeft: '230px',
+          color: '#5d635d',
         }}
         onClick={() => signin(email, password, history, login)}
       >

@@ -29,7 +29,7 @@ function Home() {
     setLog(!log)
   }
   return (
-    <div style={{ background: '#e8e8e8' }}>
+    <div style={{ background: '#e8e8e8', minHeight: '100vh' }}>
       <Header login={login} />
       {token ? <HeaderUser /> : null}
       {log ? <Login login={login} /> : null}

@@ -1,12 +1,17 @@
-import React from 'react'
+import React, { useState } from 'react'
 import 'bootswatch/dist/materia/bootstrap.min.css'
 import NavDropdown from 'react-bootstrap/NavDropdown'
 import Navbar from 'react-bootstrap/Navbar'
 import Nav from 'react-bootstrap/Nav'
 import { withRouter } from 'react-router-dom'
+import { setSearcher } from '../../actions/results'
+import { useDispatch } from 'react-redux'
 
 const Header = ({ login, history }) => {
+  const dispatch = useDispatch()
   const token = localStorage.getItem('token')
+  const [category, setCategory] = useState('Categorías')
+  const [search, setSearch] = useState('')
   const closeSession = () => {
     localStorage.removeItem('token')
     history.push('/home')
@@ -38,7 +43,13 @@ const Header = ({ login, history }) => {
       <Navbar.Toggle aria-controls='responsive-navbar-nav' />
       <Navbar.Collapse id='responsive-navbar-nav'>
         <Nav className='mr-auto'>
-          <Nav.Link href='#features'>Features</Nav.Link>
+          <Nav.Link
+            href='#features'
+            style={{ width: '80px' }}
+            onClick={() => history.push('/elements')}
+          >
+            ver más
+          </Nav.Link>
           <Nav.Link href='#pricing'>Pricing</Nav.Link>
           <NavDropdown title='Dropdown' id='collasible-nav-dropdown'>
             <NavDropdown.Item href='#action/3.1'>Action</NavDropdown.Item>
@@ -65,12 +76,32 @@ const Header = ({ login, history }) => {
           margin: '0 1%',
         }}
       >
-        <NavDropdown title='Categorías' id='collasible-nav-dropdown'>
-          <NavDropdown.Item href='#action/3.1'>Action</NavDropdown.Item>
-          <NavDropdown.Item href='#action/3.2'>Another action</NavDropdown.Item>
-          <NavDropdown.Item href='#action/3.3'>Something</NavDropdown.Item>
+        <NavDropdown title={category} id='collasible-nav-dropdown'>
+          <NavDropdown.Item
+            href='#action/3.1'
+            onClick={() => setCategory('Audiovisual')}
+          >
+            Audiovisual
+          </NavDropdown.Item>
+          <NavDropdown.Item
+            href='#action/3.2'
+            onClick={() => setCategory('Eventos')}
+          >
+            Eventos
+          </NavDropdown.Item>
+          <NavDropdown.Item
+            href='#action/3.3'
+            onClick={() => setCategory('Audiovisual y Eventos')}
+          >
+            Audiovisual y Eventos
+          </NavDropdown.Item>
           <NavDropdown.Divider />
-          <NavDropdown.Item href='#action/3.4'>Separated link</NavDropdown.Item>
+          <NavDropdown.Item
+            href='#action/3.4'
+            onClick={() => setCategory('Todos los resultados')}
+          >
+            Todos los resultados
+          </NavDropdown.Item>
         </NavDropdown>
         <input
           class='form-control'
@@ -82,6 +113,8 @@ const Header = ({ login, history }) => {
             width: '90%',
             height: '25px',
           }}
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
         />
 
         <button
@@ -93,6 +126,12 @@ const Header = ({ login, history }) => {
             marginRight: '2px',
             padding: '0',
             width: '10%',
+          }}
+          onClick={() => {
+            try {
+              dispatch(setSearcher({ search, category }))
+              history.push('/search')
+            } catch (error) {}
           }}
         >
           <i
