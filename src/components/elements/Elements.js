@@ -16,8 +16,8 @@ const Elements = () => {
     <div style={{ background: '#e8e8e8' }}>
       <Header login={login} />
       {token ? <HeaderUser /> : null}
-      <Filter />
       {log ? <Login login={login} /> : null}
+      <Filter />
     </div>
   )
 }
