@@ -53,6 +53,7 @@ const FilterElementList = ({ elements }) => {
                 }}
               >
                 <Card.Body>
+                  <Card.Img variant='top' src={el.img1} alt='' />
                   <Card.Title>{el.name}</Card.Title>
                   <Card.Title>{el.model}</Card.Title>
                   <Card.Title>{el.price}</Card.Title>

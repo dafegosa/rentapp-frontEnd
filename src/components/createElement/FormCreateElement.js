@@ -14,6 +14,9 @@ const FormCreateElement = () => {
   const [priceElement, setPriceElement] = useState('')
   const [descriptionElement, setDescriptionElement] = useState('')
   const [subCategoryElement, setSubCategoryElement] = useState('')
+  const [img1, setImg1] = useState('')
+  const [img2, setImg2] = useState('')
+  const [img3, setImg3] = useState('')
   const userId = useSelector((state) => state.user.id)
   const events = ['Seleccionar', 'Menaje', 'Decoración', 'Sonido', 'Logística']
   const both = ['Seleccionar', 'Arte y decoración', 'Sonido', 'Logística']
@@ -36,7 +39,8 @@ const FormCreateElement = () => {
       descriptionElement,
       category,
       subCategoryElement,
-      userId
+      userId,
+      img1
     )
   }
   const handleCreateElement = (
@@ -46,7 +50,8 @@ const FormCreateElement = () => {
     descriptionElement,
     category,
     subCategoryElement,
-    userId
+    userId,
+    img1
   ) => {
     try {
       dispatch(
@@ -57,10 +62,30 @@ const FormCreateElement = () => {
           descriptionElement,
           category,
           subCategoryElement,
-          userId
+          userId,
+          img1
         )
       )
     } catch (err) {}
+  }
+
+  const upLoadImage = async (el) => {
+    const formData = new FormData()
+    formData.append('file', el)
+    formData.append('upload_preset', 'kzp2h5um')
+    try {
+      const response = await fetch(
+        'http://api.cloudinary.com/v1_1/dafegosa/upload',
+        {
+          method: 'POST',
+          body: formData,
+        }
+      )
+      const data = await response.json()
+      setImg1(data.url)
+    } catch (err) {
+      console.log('El err => ', err)
+    }
   }
   return (
     <div
@@ -206,6 +231,13 @@ const FormCreateElement = () => {
               )}
             </Form.Control>
           </Col>
+        </Form.Group>
+        <Form.Group>
+          <Form.File
+            id='exampleFormControlFile1'
+            label='Example file input'
+            onChange={(e) => upLoadImage(e.target.files[0])}
+          />
         </Form.Group>
 
         {/* <Form.Group as={Row} controlId='formHorizontalCheck'>

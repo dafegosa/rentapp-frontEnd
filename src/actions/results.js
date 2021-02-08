@@ -70,7 +70,8 @@ export const createElement = (
   description,
   category,
   subCategory,
-  userId
+  userId,
+  img1
 ) => {
   return async (dispatch) => {
     try {
@@ -85,6 +86,7 @@ export const createElement = (
           description,
           category,
           subCategory,
+          img1,
           rented: false,
           available: true,
           owner: userId,
