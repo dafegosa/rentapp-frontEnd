@@ -9,7 +9,6 @@ import Nav from 'react-bootstrap/Nav'
 
 const Searcher = ({ history }) => {
   const search = useSelector((state) => state.search)
-  console.log('MIRAMELO MI PEZ => ', search)
   let elements = useSelector((state) => state.elements)
   const [category, setCategory] = useState('')
   const [log, setLog] = useState(false)

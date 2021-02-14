@@ -12,9 +12,7 @@ const ElementsList = () => {
     setShow(false)
   }
   const handleDetail = (el) => {
-    console.log('Elemento ID => ', el)
     setElementInfo(elements.filter((element) => element._id === el))
-    console.log('filtrado desde DEtail PRE', elementInfo)
     setShow(true)
   }
   return (
@@ -46,19 +44,27 @@ const ElementsList = () => {
                 className='card border-primary mb-3'
                 style={{
                   width: '18rem',
+                  paddingBottom: '0',
                 }}
                 onClick={() => {
                   handleDetail(el._id, index)
                 }}
               >
                 <Card.Body>
-                  <Card.Img variant='top' src={el.img1} alt='' />
-                  <Card.Title>{el.name}</Card.Title>
-                  <Card.Title>{el.model}</Card.Title>
-                  <Card.Title>{el.price}</Card.Title>
-                  <Card.Text>
-                    <small>{el.description}</small>
-                  </Card.Text>
+                  <Card.Img
+                    variant='top'
+                    src={el.img1}
+                    alt=''
+                    style={{ marginBottom: '2rem' }}
+                  />
+                  <Card.Title style={{ textAlign: 'center' }}>
+                    {el.name}
+                  </Card.Title>
+                  <Card.Title
+                    style={{ marginBottom: '0', textAlign: 'center' }}
+                  >
+                    {el.model}
+                  </Card.Title>
                 </Card.Body>
               </Card>
             </React.Fragment>

@@ -13,6 +13,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { elementsList } from './actions/results'
 import Elements from './components/elements/Elements'
 import Searcher from './components/home/Searcher'
+import ShoppingCard from './components/shop/ShoppingCard'
 
 function App() {
   const dispatch = useDispatch()
@@ -29,6 +30,7 @@ function App() {
         <Route exact path='/My_elements_list' component={MyElements} />
         <Route exact path='/elements' component={Elements} />
         <Route exact path='/search' component={Searcher} />
+        <Route exact path='/shop' component={ShoppingCard} />
         {/* <PrivateRoute path='/dashboard' component={Dashboard} /> */}
         <Redirect to='home' />
       </Switch>

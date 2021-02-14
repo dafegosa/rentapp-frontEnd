@@ -53,6 +53,14 @@ const Filter = () => {
     <div>
       <Nav variant='pills' activeKey='1' style={{ justifyContent: 'center' }}>
         <Nav.Item>
+          <Nav.Link
+            eventKey='1'
+            onClick={() => setCategory('AUDIOVISUAL Y EVENTOS')}
+          >
+            AUDIOVISUAL Y EVENTOS
+          </Nav.Link>
+        </Nav.Item>
+        <Nav.Item>
           <Nav.Link eventKey='1' onClick={() => setCategory('AUDIOVISUAL')}>
             AUDIOVISUAL
           </Nav.Link>
@@ -63,11 +71,8 @@ const Filter = () => {
           </Nav.Link>
         </Nav.Item>
         <Nav.Item>
-          <Nav.Link
-            eventKey='1'
-            onClick={() => setCategory('AUDIOVISUAL Y EVENTOS')}
-          >
-            AUDIOVISUAL Y EVENTOS
+          <Nav.Link eventKey='1' onClick={() => setCategory('TODO')}>
+            TODO
           </Nav.Link>
         </Nav.Item>
 
@@ -107,12 +112,6 @@ const Filter = () => {
         <Nav.Item>
           <Nav.Link eventKey='2' onClick={() => setCategory('menaje')}>
             menaje
-          </Nav.Link>
-        </Nav.Item>
-
-        <Nav.Item>
-          <Nav.Link eventKey='1' onClick={() => setCategory('TODO')}>
-            TODO
           </Nav.Link>
         </Nav.Item>
       </Nav>

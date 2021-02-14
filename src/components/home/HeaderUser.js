@@ -10,6 +10,7 @@ import { myElementsList } from '../../actions/results'
 const HeaderUser = ({ login, history }) => {
   const dispatch = useDispatch()
   const id = useSelector((state) => state.user.id)
+  const items = useSelector((state) => state.items)
   useEffect(() => {
     try {
       dispatch(myElementsList(id))
@@ -35,6 +36,15 @@ const HeaderUser = ({ login, history }) => {
         <strong>
           <i class='far fa-user'></i> {userEmail || 'Usuario'}
         </strong>
+      </Nav.Link>
+      <Nav.Link
+        href='#pricing'
+        style={{ background: '#4b574d', color: 'white' }}
+        onClick={() => history.push('/shop')}
+      >
+        {' '}
+        <i class='fas fa-shopping-cart'></i>
+        {items.length}{' '}
       </Nav.Link>
       <Navbar.Collapse id='responsive-navbar-nav'>
         <Nav>

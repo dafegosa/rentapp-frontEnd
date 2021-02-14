@@ -21,7 +21,6 @@ const FormCreateElement = () => {
   const events = ['Seleccionar', 'Menaje', 'Decoración', 'Sonido', 'Logística']
   const both = ['Seleccionar', 'Arte y decoración', 'Sonido', 'Logística']
 
-  console.log('El user id ', userId)
   const audiovsual = [
     'Seleccionar',
     'Arte',
@@ -40,7 +39,9 @@ const FormCreateElement = () => {
       category,
       subCategoryElement,
       userId,
-      img1
+      img1,
+      img2,
+      img3
     )
   }
   const handleCreateElement = (
@@ -51,7 +52,9 @@ const FormCreateElement = () => {
     category,
     subCategoryElement,
     userId,
-    img1
+    img1,
+    img2,
+    img3
   ) => {
     try {
       dispatch(
@@ -63,13 +66,15 @@ const FormCreateElement = () => {
           category,
           subCategoryElement,
           userId,
-          img1
+          img1,
+          img2,
+          img3
         )
       )
     } catch (err) {}
   }
 
-  const upLoadImage = async (el) => {
+  const upLoadImage = async (el, photoNumber) => {
     const formData = new FormData()
     formData.append('file', el)
     formData.append('upload_preset', 'kzp2h5um')
@@ -82,10 +87,20 @@ const FormCreateElement = () => {
         }
       )
       const data = await response.json()
-      setImg1(data.url)
-    } catch (err) {
-      console.log('El err => ', err)
-    }
+      switch (photoNumber) {
+        case 1:
+          setImg1(data.url)
+          break
+        case 2:
+          setImg2(data.url)
+          break
+        case 3:
+          setImg3(data.url)
+          break
+        default:
+          break
+      }
+    } catch (err) {}
   }
   return (
     <div
@@ -236,10 +251,23 @@ const FormCreateElement = () => {
           <Form.File
             id='exampleFormControlFile1'
             label='Example file input'
-            onChange={(e) => upLoadImage(e.target.files[0])}
+            onChange={(e) => upLoadImage(e.target.files[0], 1)}
           />
         </Form.Group>
-
+        <Form.Group>
+          <Form.File
+            id='exampleFormControlFile1'
+            label='Example file input'
+            onChange={(e) => upLoadImage(e.target.files[0], 2)}
+          />
+        </Form.Group>
+        <Form.Group>
+          <Form.File
+            id='exampleFormControlFile1'
+            label='Example file input'
+            onChange={(e) => upLoadImage(e.target.files[0], 3)}
+          />
+        </Form.Group>
         {/* <Form.Group as={Row} controlId='formHorizontalCheck'>
           <Col sm={{ span: 10, offset: 2 }}>
             <Form.Check label='Remember me' />

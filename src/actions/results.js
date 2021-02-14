@@ -4,6 +4,7 @@ import {
   SET_MYELEMENTS,
   SET_ELEMENTS,
   SET_SEARCHER,
+  SET_ITEM,
 } from '../utils/constants'
 export const setUser = (user) => ({
   type: SET_USER,
@@ -20,6 +21,10 @@ export const setElements = (elements) => ({
 export const setSearcher = (searcher) => ({
   type: SET_SEARCHER,
   searcher,
+})
+export const setShoppingCart = (item) => ({
+  type: SET_ITEM,
+  item,
 })
 export const createUser = (email, password, history, closeModal, login) => {
   return async (dispatch) => {
@@ -71,7 +76,9 @@ export const createElement = (
   category,
   subCategory,
   userId,
-  img1
+  img1,
+  img2,
+  img3
 ) => {
   return async (dispatch) => {
     try {
@@ -87,13 +94,14 @@ export const createElement = (
           category,
           subCategory,
           img1,
+          img2,
+          img3,
           rented: false,
           available: true,
           owner: userId,
           iHaveIt: 'nn',
         },
       })
-      console.log('DataElement => ', data.element)
       // dispatch(setUser(data.user))
     } catch (err) {}
   }
@@ -124,7 +132,6 @@ export const elementsList = (id) => {
         url: 'element/all',
       })
       dispatch(setElements(data.data))
-      console.log('Todos los elementos => ', data.data)
     } catch (err) {}
   }
 }

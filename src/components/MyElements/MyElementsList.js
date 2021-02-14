@@ -5,7 +5,6 @@ import CardColumns from 'react-bootstrap/CardColumns'
 
 const MyElementsList = () => {
   const myElements = useSelector((state) => state.myElements)
-  console.log('MIS ELEMENTOS DONDE SON => ', myElements)
   return (
     <CardColumns
       style={{
