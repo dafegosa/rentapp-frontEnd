@@ -1,23 +1,30 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Modal from 'react-bootstrap/Modal'
 import Button from 'react-bootstrap/Button'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { setShoppingCart } from '../../actions/results'
 import Login from './Login'
 const DetailModal = ({ show, closeModal, elementInfo }) => {
   const dispatch = useDispatch()
+  const items = useSelector((state) => state.items)
   const token = localStorage.getItem('token')
   const element = elementInfo[0]
   const [bigPhotoNum, setBigPhotoNum] = useState(element.img1)
   const [smallPhotoA, setSmallPhotoA] = useState(element.img2)
   const [smallPhotoB, setSmallPhotoB] = useState(element.img3)
+  const [inCar, setInCar] = useState(false)
   const [log, setLog] = useState(false)
   const login = () => {
     setLog(!log)
   }
-
+  useEffect(() => {
+    const carElement = items.filter((el) => el._id === element._id)
+    console.log(carElement)
+    if (carElement.length > 0) setInCar(true)
+  }, [])
   const handleShoppingCard = () => {
     dispatch(setShoppingCart(element))
+    closeModal()
   }
   return (
     <Modal
@@ -102,13 +109,17 @@ const DetailModal = ({ show, closeModal, elementInfo }) => {
         <p>{element.description}</p>
       </Modal.Body>
       <Modal.Footer>
-        <Button
-          type='button'
-          className='btn btn-secondary'
-          onClick={token ? () => handleShoppingCard() : () => login()}
-        >
-          {token ? 'Agregar al carrito' : 'Me interesa'}
-        </Button>
+        {inCar ? (
+          <p>Item en carrito de compras</p>
+        ) : (
+          <Button
+            type='button'
+            className='btn btn-secondary'
+            onClick={token ? () => handleShoppingCard() : () => login()}
+          >
+            {token ? 'Agregar al carrito' : 'Me interesa'}
+          </Button>
+        )}
         {log ? <Login login={login} /> : null}
       </Modal.Footer>
     </Modal>

@@ -64,7 +64,7 @@ const Header = ({ login, history }) => {
           </NavDropdown>
         </Nav>
       </Navbar.Collapse>
-      <form
+      <div
         style={{
           background: 'white',
           borderBottomRightRadius: '20px',
@@ -140,7 +140,7 @@ const Header = ({ login, history }) => {
             aria-label='LEFT-POINTING MAGNIFYING GLASS'
           ></i>
         </button>
-      </form>
+      </div>
     </Navbar>
   )
 }

@@ -5,14 +5,16 @@ import HomeModal from './HomeModal'
 
 const LargeCard = () => {
   const [show, setShow] = useState(false)
-
+  const [option, setOption] = useState('')
   const closeModal = () => {
     setShow(false)
   }
 
   return (
     <div className='card-group' style={{ margin: '1% 15%' }}>
-      {show ? <HomeModal show={show} closeModal={closeModal} /> : null}
+      {show ? (
+        <HomeModal show={show} closeModal={closeModal} option={option} />
+      ) : null}
       <div
         className='card border-info text-center'
         style={{ margin: '1%', height: 'auto' }}
@@ -29,7 +31,10 @@ const LargeCard = () => {
           </p>
           <p className='card-text'>
             <small
-              onClick={() => setShow(true)}
+              onClick={() => {
+                setOption('earn')
+                setShow(true)
+              }}
               style={{ cursor: 'pointer', color: '#74e893' }}
             >
               <strong> Ver más... </strong>
@@ -52,7 +57,10 @@ const LargeCard = () => {
           </p>
           <p className='card-text'>
             <small
-              onClick={() => setShow(true)}
+              onClick={() => {
+                setOption('find')
+                setShow(true)
+              }}
               style={{ cursor: 'pointer', color: '#74e893' }}
             >
               <strong> Ver más... </strong>
@@ -74,7 +82,10 @@ const LargeCard = () => {
           </p>
           <p className='card-text'>
             <small
-              onClick={() => setShow(true)}
+              onClick={() => {
+                setOption('tellUs')
+                setShow(true)
+              }}
               style={{ cursor: 'pointer', color: '#74e893' }}
             >
               <strong> Ver más... </strong>

@@ -1,6 +1,29 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import Modal from 'react-bootstrap/Modal'
-const HomeModal = ({ show, closeModal }) => {
+const HomeModal = ({ show, closeModal, option }) => {
+  const [message, setMessage] = useState('')
+  useEffect(() => {
+    switch (option) {
+      case 'earn':
+        setMessage(
+          'Muchas personas están necesitando algo que tú tienes. Gana dinero rentando objetos que tienes sin usar. '
+        )
+        break
+      case 'find':
+        setMessage(
+          'Encuentra lo que necesitas para tu proyecto audiovisual. Escribe una palabra clave en el bucador o da click en "Ver mas" y descubre todos los elementos que hay a tu disposición'
+        )
+        break
+      case 'tellUs':
+        setMessage(
+          'Déjanos un mensaje diciendonos qué estás buscando para tu proyecto audiovisual y nosotros internamente lo buscaremos por tí. Te enviaremos un correo contantode si tuvimos éxito en la búsqueda. También puedes contarnos qué te gustaría ver en esta aplciación, y trabajaremos para mejorar tu experiencia'
+        )
+        break
+      default:
+        break
+    }
+  }, [])
+
   return (
     <Modal
       show={show}
@@ -14,14 +37,7 @@ const HomeModal = ({ show, closeModal }) => {
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <p>
-          Ipsum molestiae natus adipisci modi eligendi? Debitis amet quae unde
-          commodi aspernatur enim, consectetur. Cumque deleniti temporibus ipsam
-          atque a dolores quisquam quisquam adipisci possimus laboriosam.
-          Quibusdam facilis doloribus debitis! Sit quasi quod accusamus eos
-          quod. Ab quos consequuntur eaque quo rem! Mollitia reiciendis porro
-          quo magni incidunt dolore amet atque facilis ipsum deleniti rem!
-        </p>
+        <p>{message}</p>
       </Modal.Body>
     </Modal>
   )

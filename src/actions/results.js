@@ -5,6 +5,7 @@ import {
   SET_ELEMENTS,
   SET_SEARCHER,
   SET_ITEM,
+  SET_ITEMS,
 } from '../utils/constants'
 export const setUser = (user) => ({
   type: SET_USER,
@@ -25,6 +26,10 @@ export const setSearcher = (searcher) => ({
 export const setShoppingCart = (item) => ({
   type: SET_ITEM,
   item,
+})
+export const deleteItem = (items) => ({
+  type: SET_ITEMS,
+  items,
 })
 export const createUser = (email, password, history, closeModal, login) => {
   return async (dispatch) => {
