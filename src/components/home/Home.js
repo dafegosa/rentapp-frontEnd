@@ -29,7 +29,14 @@ function Home() {
     setLog(!log)
   }
   return (
-    <div style={{ background: '#e8e8e8', minHeight: '100vh' }}>
+    <div
+      style={{
+        background: 'rgb(215,222,217)',
+        background:
+          'linear-gradient(0deg, rgba(215,222,217,1) 0%, rgba(201,223,207,1) 51%, rgba(116,232,147,1) 93%)',
+        minHeight: '100vh',
+      }}
+    >
       <Header login={login} />
       {token ? <HeaderUser /> : null}
       {log ? <Login login={login} /> : null}

@@ -51,33 +51,50 @@ const Filter = () => {
 
   return (
     <div>
-      <Nav variant='pills' activeKey='1' style={{ justifyContent: 'center' }}>
+      <Nav variant='taps' activeKey='1' style={{ justifyContent: 'center' }}>
         <Nav.Item>
           <Nav.Link
             eventKey='1'
             onClick={() => setCategory('AUDIOVISUAL Y EVENTOS')}
+            style={{ color: '#7b4e99' }}
           >
             AUDIOVISUAL Y EVENTOS
           </Nav.Link>
         </Nav.Item>
         <Nav.Item>
-          <Nav.Link eventKey='1' onClick={() => setCategory('AUDIOVISUAL')}>
+          <Nav.Link
+            eventKey='1'
+            onClick={() => setCategory('AUDIOVISUAL')}
+            style={{ color: '#7b4e99' }}
+          >
             AUDIOVISUAL
           </Nav.Link>
         </Nav.Item>
         <Nav.Item>
-          <Nav.Link eventKey='1' onClick={() => setCategory('EVENTOS')}>
+          <Nav.Link
+            eventKey='1'
+            onClick={() => setCategory('EVENTOS')}
+            style={{ color: '#7b4e99' }}
+          >
             EVENTOS
           </Nav.Link>
         </Nav.Item>
         <Nav.Item>
-          <Nav.Link eventKey='1' onClick={() => setCategory('TODO')}>
+          <Nav.Link
+            eventKey='1'
+            onClick={() => setCategory('TODO')}
+            style={{ color: '#7b4e99' }}
+          >
             TODO
           </Nav.Link>
         </Nav.Item>
 
         <Nav.Item>
-          <Nav.Link eventKey='2' onClick={() => setCategory('arte')}>
+          <Nav.Link
+            eventKey='2'
+            onClick={() => setCategory('arte')}
+            style={{ color: '#7b4e99' }}
+          >
             arte
           </Nav.Link>
         </Nav.Item>
@@ -85,32 +102,53 @@ const Filter = () => {
           <Nav.Link
             eventKey='2'
             onClick={() => setCategory('fotografía e iluminación')}
+            style={{ color: '#7b4e99' }}
           >
             fotografía e iluminación
           </Nav.Link>
         </Nav.Item>
         <Nav.Item>
-          <Nav.Link eventKey='2' onClick={() => setCategory('sonido')}>
+          <Nav.Link
+            eventKey='2'
+            onClick={() => setCategory('sonido')}
+            style={{ color: '#7b4e99' }}
+          >
             sonido
           </Nav.Link>
         </Nav.Item>
         <Nav.Item>
-          <Nav.Link eventKey='2' onClick={() => setCategory('post-producción')}>
+          <Nav.Link
+            eventKey='2'
+            onClick={() => setCategory('post-producción')}
+            style={{ color: '#7b4e99' }}
+          >
             post-producción
           </Nav.Link>
         </Nav.Item>
         <Nav.Item>
-          <Nav.Link eventKey='2' onClick={() => setCategory('logística')}>
+          <Nav.Link
+            eventKey='2'
+            onClick={() => setCategory('logística')}
+            style={{ color: '#7b4e99' }}
+          >
             logística
           </Nav.Link>
         </Nav.Item>
         <Nav.Item>
-          <Nav.Link eventKey='2' onClick={() => setCategory('decoración')}>
+          <Nav.Link
+            eventKey='2'
+            onClick={() => setCategory('decoración')}
+            style={{ color: '#7b4e99' }}
+          >
             decoración
           </Nav.Link>
         </Nav.Item>
         <Nav.Item>
-          <Nav.Link eventKey='2' onClick={() => setCategory('menaje')}>
+          <Nav.Link
+            eventKey='2'
+            onClick={() => setCategory('menaje')}
+            style={{ color: '#7b4e99' }}
+          >
             menaje
           </Nav.Link>
         </Nav.Item>

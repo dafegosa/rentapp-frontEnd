@@ -33,12 +33,13 @@ const MyElementsList = () => {
                 }}
               >
                 <Card.Body>
-                  <Card.Title>{el.name}</Card.Title>
-                  <Card.Title>{el.model}</Card.Title>
-                  <Card.Title>{el.price}</Card.Title>
-                  <Card.Text>
-                    <small>{el.description}</small>
-                  </Card.Text>
+                  <Card.Img variant='top' src={el.img1} alt='' />
+                  <Card.Title style={{ textAlign: 'center' }}>
+                    {el.name}
+                  </Card.Title>
+                  <Card.Title style={{ textAlign: 'center' }}>
+                    {el.model}
+                  </Card.Title>
                 </Card.Body>
               </Card>
             </React.Fragment>
